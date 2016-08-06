@@ -1,45 +1,49 @@
 package com.freeman.calculator.controller;
 
-import com.freeman.calculator.Key;
-import com.freeman.calculator.keys.One;
-import javafx.event.ActionEvent;
+import com.freeman.calculator.KeyAction;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  * Created by freeman on 31.07.2016.
  */
 public class CalculatorController {
     @FXML private TextField displayField;
+    @FXML private GridPane keyboard;
 
-/*    @FXML private Button sevenKey;
-    @FXML private Button eightKey;
-    @FXML private Button nineKey;
-    @FXML private Button divideKey;
-
-    @FXML private Button fourKey;
-    @FXML private Button fiveKey;
-    @FXML private Button sixKey;
-    @FXML private Button multiplyKey;
-
-    @FXML private Button oneKey;
-    @FXML private Button twoKey;
-    @FXML private Button threeKey;
-    @FXML private Button minusKey;
-
-    @FXML private Button zeroKey;
-    @FXML private Button pointKey;
-    @FXML private Button equalsKey;
-    @FXML private Button plusKey;*/
+    private StringProperty currentInput = new SimpleStringProperty("");
 
     @FXML
     private void initialize() {
-
+        displayField.textProperty().bindBidirectional(currentInput);
+        initKeyListeners();
     }
 
-    @FXML
-    private void push(ActionEvent event) {
-        System.out.println("Event type is: " + event.getEventType());
+    private void initKeyListeners() {
+        keyboard.getChildren().forEach(key -> {
+            ((Button)key).setOnAction(event -> {
+                handleInput(KeyAction.valueOf(key.getId()));
+            });
+        });
+    }
+
+    private void handleInput(KeyAction keyAction) {
+        if (KeyAction.EQUALS == keyAction) {
+            calculateResult();
+        } else {
+            processInput(keyAction.getAction());
+        }
+    }
+
+    private void calculateResult() {
+        System.out.println("Calculating " + currentInput.get() + " expression value");
+    }
+
+    private void processInput(String input) {
+        currentInput.set(currentInput.get().concat(input));
     }
 }

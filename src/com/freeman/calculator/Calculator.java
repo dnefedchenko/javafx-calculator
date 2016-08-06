@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,9 +26,7 @@ public class Calculator extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Calculator.class.getResource("view/root-layout.fxml"));
         loader.setResources(ResourceBundle.getBundle("calculator"));
-        GridPane rootLayout = loader.load();
-        rootLayout.setGridLinesVisible(true);
-
+        VBox rootLayout = loader.load();
 
         Scene scene = new Scene(rootLayout);
         primaryStage.setTitle("Calculator");
