@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<GridPane xmlns:fx="http://javafx.com/fxml" hgap="5" vgap="5"
+          fx:controller="com.freeman.calculator.controller.CalculatorController">
+    <columnConstraints>
+        <!--<ColumnConstraints percentWidth="100.0" prefWidth="100.0" fillWidth="true"/>-->
+        <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
+        <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
+        <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
+        <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
+    </columnConstraints>
+    <children>
+        <TextField fx:id="displayField" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="4"></TextField>
+
+        <!--<VBox fx:id="keyboard">-->
+        <Button fx:id="sevenKey" text="%seven_key_label" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity" onAction="#push"></Button>
+        <Button fx:id="eightKey" text="%eight_key_label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="nineKey" text="%nine_key_label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="divideKey" text="%divide_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+
+        <Button fx:id="fourKey" text="%four_key_label" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="fiveKey" text="%five_key_label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="sixKey" text="%six_key_label" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="multiplyKey" text="%multiply_key_label" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+
+        <Button fx:id="oneKey" text="%one_key_label" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="twoKey" text="%two_key_label" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="threeKey" text="%three_key_label" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="minusKey" text="%minus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+
+        <Button fx:id="zeroKey" text="%zero_key_label" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="pointKey" text="%point_key_label" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="equalsKey" text="%equals_key_label" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <Button fx:id="plusKey" text="%plus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"></Button>
+        <!--</VBox>-->
+    </children>
+</GridPane>
