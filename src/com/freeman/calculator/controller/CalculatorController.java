@@ -1,5 +1,6 @@
 package com.freeman.calculator.controller;
 
+import com.freeman.calculator.Calculator;
 import com.freeman.calculator.KeyAction;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,10 +16,13 @@ public class CalculatorController {
     @FXML private TextField displayField;
     @FXML private GridPane keyboard;
 
+    private Calculator calculator;
+
     private StringProperty currentInput = new SimpleStringProperty("");
 
     @FXML
     private void initialize() {
+        calculator = new Calculator();
         displayField.textProperty().bindBidirectional(currentInput);
         initKeyListeners();
     }
@@ -33,14 +37,14 @@ public class CalculatorController {
 
     private void handleInput(KeyAction keyAction) {
         if (KeyAction.EQUALS == keyAction) {
-            calculateResult();
+            calculateResult(keyAction.getAction());
         } else {
             processInput(keyAction.getAction());
         }
     }
 
-    private void calculateResult() {
-        System.out.println("Calculating " + currentInput.get() + " expression value");
+    private void calculateResult(String input) {
+        currentInput.set(calculator.calculate(input));
     }
 
     private void processInput(String input) {
