@@ -17,6 +17,7 @@ public class CalculatorTest {
 
     @Test
     public void testAdding() {
-        Assert.assertEquals("3", testee.calculate("1+2"), "One plus two should be equal to three");
+//        Assert.assertEquals("3.5", testee.calculate("3+4*2/(1-5)^2"));
+        Assert.assertEquals("36", testee.calculate("( − 1 − 5 ) ^ 2"));
     }
 }

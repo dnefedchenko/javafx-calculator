@@ -37,17 +37,17 @@ public class CalculatorController {
 
     private void handleInput(KeyAction keyAction) {
         if (KeyAction.EQUALS == keyAction) {
-            calculateResult(keyAction.getAction());
+            calculateResult();
         } else {
             processInput(keyAction.getAction());
         }
     }
 
-    private void calculateResult(String input) {
-        currentInput.set(calculator.calculate(input));
+    private void calculateResult() {
+        currentInput.set(calculator.calculate(currentInput.getValue()).concat(" "));
     }
 
     private void processInput(String input) {
-        currentInput.set(currentInput.get().concat(input));
+        currentInput.set(currentInput.get().concat(input).concat(" "));
     }
 }
