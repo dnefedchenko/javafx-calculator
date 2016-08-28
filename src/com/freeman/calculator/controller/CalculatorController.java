@@ -12,6 +12,10 @@ import javafx.scene.layout.GridPane;
 
 import java.util.Objects;
 
+import static com.freeman.calculator.util.CalculationUtils.OPENING_PARENTHESIS;
+import static com.freeman.calculator.util.CalculationUtils.isDigit;
+import static com.freeman.calculator.util.CalculationUtils.isPoint;
+
 /**
  * Created by freeman on 31.07.2016.
  */
@@ -52,8 +56,8 @@ public class CalculatorController {
 
     private void processInput(String input) {
         if (currentInput.get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input)
-                || currentInput.get().lastIndexOf("(") == currentInput.get().length() - 1
-                || CalculationUtils.isDigit(input)) {
+                || currentInput.get().lastIndexOf(OPENING_PARENTHESIS) == currentInput.get().length() - 1
+                || isDigit(input) || isPoint(input)) {
             currentInput.set(currentInput.get().concat(input));
         } else {
             currentInput.set(currentInput.get().concat(" ").concat(input).concat(" "));

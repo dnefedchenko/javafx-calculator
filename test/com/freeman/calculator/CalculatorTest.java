@@ -57,4 +57,9 @@ public class CalculatorTest {
     public void testExpression() {
         assertEquals("Evaluated expression equals 3.5", "3.5", testee.calculate(EXPRESSION));
     }
+
+    @Test
+    public void testFloatingPointExpression() {
+        assertEquals("(-101.0 + 102.0)", "1.0", testee.calculate("-101.0 + 102.0"));
+    }
 }

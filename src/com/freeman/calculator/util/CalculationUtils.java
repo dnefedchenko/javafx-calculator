@@ -3,7 +3,6 @@ package com.freeman.calculator.util;
 import java.util.*;
 
 import static com.freeman.calculator.util.KeyAction.*;
-import static com.freeman.calculator.util.KeyAction.POWER;
 
 /**
  * Created by freeman on 28.08.2016.
@@ -26,22 +25,26 @@ public class CalculationUtils {
     }
 
     public static boolean isDigit(String character) {
-        return character.matches(CalculationUtils.DIGIT_PATTERN);
+        return character.matches(DIGIT_PATTERN);
+    }
+
+    public static boolean isPoint(String character) {
+        return character.equals(POINT.getAction());
     }
 
     public static boolean isFunction(String character) {
-        return CalculationUtils.functions.contains(character);
+        return functions.contains(character);
     }
 
     public static boolean isOpeningParenthesis(String character) {
-        return Objects.equals(character, CalculationUtils.OPENING_PARENTHESIS);
+        return Objects.equals(character, OPENING_PARENTHESIS);
     }
 
     public static boolean isClosingParenthesis(String character) {
-        return Objects.equals(character, CalculationUtils.CLOSING_PARENTHESIS);
+        return Objects.equals(character, CLOSING_PARENTHESIS);
     }
 
     public static boolean isOperator(String character) {
-        return character.matches(CalculationUtils.OPERATOR_PATTERN);
+        return character.matches(OPERATOR_PATTERN);
     }
 }
