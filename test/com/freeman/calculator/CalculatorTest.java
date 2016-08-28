@@ -1,14 +1,14 @@
 package com.freeman.calculator;
 
-import org.junit.Assert;
+import com.freeman.calculator.service.Calculator;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static com.freeman.calculator.KeyAction.PLUS;
-import static com.freeman.calculator.KeyAction.MINUS;
-import static com.freeman.calculator.KeyAction.MULTIPLY;
-import static com.freeman.calculator.KeyAction.DIVIDE;
+import static com.freeman.calculator.util.KeyAction.MINUS;
+import static com.freeman.calculator.util.KeyAction.MULTIPLY;
+import static com.freeman.calculator.util.KeyAction.DIVIDE;
+import static com.freeman.calculator.util.CalculationUtils.*;
 
 /**
  * Created by freeman on 07.08.2016.
@@ -25,12 +25,22 @@ public class CalculatorTest {
 
     @Test
     public void testAdding() {
-        assertEquals("One plus two equals three", "3.0", testee.calculate("1 " + PLUS.action + " 2"));
+        assertEquals("One plus two equals three", "3.0", testee.calculate("1 + 2"));
     }
 
     @Test
     public void testSubtraction() {
         assertEquals("Three minus one equals two", "2.0", testee.calculate("3 " + MINUS.action + " 1"));
+    }
+
+    @Test
+    public void testUnaryMinus() {
+        assertEquals("Minus one minus two equals minus three", "-3.0", testee.calculate(MINUS.getAction() + "1 " + MINUS.getAction() + " 2"));
+    }
+
+    @Test
+    public void testUnaryMinusWithParenthesis() {
+        assertEquals("(-101 + 102) = 1", "1.0", testee.calculate("( -101 + 102 )"));
     }
 
     @Test

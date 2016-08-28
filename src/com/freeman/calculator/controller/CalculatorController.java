@@ -1,13 +1,16 @@
 package com.freeman.calculator.controller;
 
-import com.freeman.calculator.Calculator;
-import com.freeman.calculator.KeyAction;
+import com.freeman.calculator.util.CalculationUtils;
+import com.freeman.calculator.service.Calculator;
+import com.freeman.calculator.util.KeyAction;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+
+import java.util.Objects;
 
 /**
  * Created by freeman on 31.07.2016.
@@ -17,12 +20,12 @@ public class CalculatorController {
     @FXML private GridPane keyboard;
 
     private Calculator calculator;
-
-    private StringProperty currentInput = new SimpleStringProperty("");
+    private StringProperty currentInput;
 
     @FXML
     private void initialize() {
         calculator = new Calculator();
+        currentInput = new SimpleStringProperty("");
         displayField.textProperty().bindBidirectional(currentInput);
         initKeyListeners();
     }
@@ -48,6 +51,12 @@ public class CalculatorController {
     }
 
     private void processInput(String input) {
-        currentInput.set(currentInput.get().concat(input).concat(" "));
+        if (currentInput.get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input)
+                || currentInput.get().lastIndexOf("(") == currentInput.get().length() - 1
+                || CalculationUtils.isDigit(input)) {
+            currentInput.set(currentInput.get().concat(input));
+        } else {
+            currentInput.set(currentInput.get().concat(" ").concat(input).concat(" "));
+        }
     }
 }
