@@ -12,9 +12,7 @@ import javafx.scene.layout.GridPane;
 
 import java.util.Objects;
 
-import static com.freeman.calculator.util.CalculationUtils.OPENING_PARENTHESIS;
-import static com.freeman.calculator.util.CalculationUtils.isDigit;
-import static com.freeman.calculator.util.CalculationUtils.isPoint;
+import static com.freeman.calculator.util.CalculationUtils.*;
 
 /**
  * Created by freeman on 31.07.2016.
@@ -45,6 +43,8 @@ public class CalculatorController {
     private void handleInput(KeyAction keyAction) {
         if (KeyAction.EQUALS == keyAction) {
             calculateResult();
+        } else if (KeyAction.CLEAR == keyAction) {
+            clearEntry();
         } else {
             processInput(keyAction.getAction());
         }
@@ -54,13 +54,33 @@ public class CalculatorController {
         currentInput.set(calculator.calculate(currentInput.getValue()).concat(" "));
     }
 
+    private void clearEntry() {
+        currentInput.set(currentInput.get().substring(0, currentInput.get().length() - 1));
+    }
+
     private void processInput(String input) {
-        if (currentInput.get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input)
-                || currentInput.get().lastIndexOf(OPENING_PARENTHESIS) == currentInput.get().length() - 1
-                || isDigit(input) || isPoint(input)) {
+        if (startsFromClosingParenthesis(input)) {
+            return;
+        }
+
+        if (startsFromMinus(input) || isDigit(input) || isPoint(input)) {
             currentInput.set(currentInput.get().concat(input));
+        } else if(startsFromOpeningParenthesis(input)) {
+            currentInput.set(currentInput.get().concat(input).concat(" "));
         } else {
             currentInput.set(currentInput.get().concat(" ").concat(input).concat(" "));
         }
+    }
+
+    private boolean startsFromOpeningParenthesis(String input) {
+        return currentInput.get().isEmpty() && Objects.equals(OPENING_PARENTHESIS, input);
+    }
+
+    private boolean startsFromMinus(String input) {
+        return currentInput.get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input);
+    }
+
+    private boolean startsFromClosingParenthesis(String input) {
+        return currentInput.get().isEmpty() && Objects.equals(CLOSING_PARENTHESIS, input);
     }
 }

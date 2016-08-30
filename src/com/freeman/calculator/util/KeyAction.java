@@ -22,7 +22,10 @@ public enum KeyAction {
     PLUS("\u002B"),
     MINUS("\u2212"),
     EQUALS("\u003D"),
-    POWER("^");
+    POWER("\u005E"),
+    OPENING_PARENTHESIS("\u0028"),
+    CLOSING_PARENTHESIS("\u0029"),
+    CLEAR("CE");
 
     public String action;
 

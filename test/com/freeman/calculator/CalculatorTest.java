@@ -4,11 +4,8 @@ import com.freeman.calculator.service.Calculator;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.freeman.calculator.util.KeyAction.*;
 import static org.junit.Assert.assertEquals;
-import static com.freeman.calculator.util.KeyAction.MINUS;
-import static com.freeman.calculator.util.KeyAction.MULTIPLY;
-import static com.freeman.calculator.util.KeyAction.DIVIDE;
-import static com.freeman.calculator.util.CalculationUtils.*;
 
 /**
  * Created by freeman on 07.08.2016.
