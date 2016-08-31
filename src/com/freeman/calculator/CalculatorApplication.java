@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
  * Created by freeman on 31.07.2016.
  */
 public class CalculatorApplication extends Application {
+    private static String STYLESHEET_PATH = "calculator.css";
 
     public static void main(String[] args) {
         launch(args);
@@ -25,6 +26,7 @@ public class CalculatorApplication extends Application {
         VBox rootLayout = loader.load();
 
         Scene scene = new Scene(rootLayout);
+        scene.getStylesheets().add(STYLESHEET_PATH);
         primaryStage.setTitle("Calculator");
         primaryStage.setScene(scene);
         primaryStage.show();

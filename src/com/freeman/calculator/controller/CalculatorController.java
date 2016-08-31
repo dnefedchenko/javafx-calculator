@@ -30,6 +30,7 @@ public class CalculatorController {
         currentInput = new SimpleStringProperty("");
         displayField.textProperty().bindBidirectional(currentInput);
         initKeyListeners();
+//        initDisplayListener();
     }
 
     private void initKeyListeners() {
@@ -37,6 +38,20 @@ public class CalculatorController {
             ((Button)key).setOnAction(event -> {
                 handleInput(KeyAction.valueOf(key.getId()));
             });
+        });
+    }
+
+    private void initDisplayListener() {
+        displayField.textProperty().addListener((observable, oldValue, newValue) -> {
+            String[] inputCharacters = newValue.split("\\s");
+            String lastTypedCharacter = inputCharacters[inputCharacters.length - 1];
+
+            if (!isDigit(lastTypedCharacter) && !isOpeningParenthesis(lastTypedCharacter) && !isPoint(lastTypedCharacter)
+                    && !isClosingParenthesis(lastTypedCharacter) && !isOperator(lastTypedCharacter)) {
+                displayField.textProperty().setValue("");
+            } else if (!displayField.textProperty().getValue().endsWith(" ")) {
+                displayField.textProperty().setValue(newValue.concat(" "));
+            }
         });
     }
 
@@ -55,6 +70,9 @@ public class CalculatorController {
     }
 
     private void clearEntry() {
+        if (currentInput.get().isEmpty()) {
+            return;
+        }
         currentInput.set(currentInput.get().substring(0, currentInput.get().length() - 1));
     }
 

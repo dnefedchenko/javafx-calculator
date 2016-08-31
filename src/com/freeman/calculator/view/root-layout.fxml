@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.freeman.calculator.controller.CalculatorController">
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="content" fx:controller="com.freeman.calculator.controller.CalculatorController">
     <children>
         <HBox fx:id="displayBox">
             <children>
-                <TextField fx:id="displayField" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="displayField" HBox.hgrow="ALWAYS" styleClass="display"/>
             </children>
         </HBox>
 
@@ -25,30 +25,30 @@
             </columnConstraints>
 
             <children>
-                <Button fx:id="OPENING_PARENTHESIS" text="%opening_parenthesis_key_label" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="CLOSING_PARENTHESIS" text="%closing_parenthesis_key_label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="POWER" text="%power_key_label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="CLEAR" text="%clear_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="OPENING_PARENTHESIS" styleClass="key-operator" text="%opening_parenthesis_key_label" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="CLOSING_PARENTHESIS" styleClass="key-operator" text="%closing_parenthesis_key_label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="POWER" styleClass="key-operator" text="%power_key_label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="CLEAR" styleClass="key-operator" text="%clear_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
 
-                <Button fx:id="SEVEN" text="%seven_key_label" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="EIGHT" text="%eight_key_label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="NINE" text="%nine_key_label" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="DIVIDE" text="%divide_key_label" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="SEVEN" styleClass="key-digit" text="%seven_key_label" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="EIGHT" styleClass="key-digit" text="%eight_key_label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="NINE" styleClass="key-digit" text="%nine_key_label" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="DIVIDE" styleClass="key-operator" text="%divide_key_label" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
 
-                <Button fx:id="FOUR" text="%four_key_label" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="FIVE" text="%five_key_label" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="SIX" text="%six_key_label" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="MULTIPLY" text="%multiply_key_label" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="FOUR" styleClass="key-digit" text="%four_key_label" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="FIVE" styleClass="key-digit" text="%five_key_label" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="SIX" styleClass="key-digit" text="%six_key_label" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="MULTIPLY" styleClass="key-operator" text="%multiply_key_label" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.columnSpan="1" maxWidth="Infinity"/>
 
-                <Button fx:id="ONE" text="%one_key_label" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="TWO" text="%two_key_label" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="THREE" text="%three_key_label" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="MINUS" text="%minus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="ONE" styleClass="key-digit" text="%one_key_label" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="TWO" styleClass="key-digit" text="%two_key_label" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="THREE" styleClass="key-digit" text="%three_key_label" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="MINUS" styleClass="key-operator" text="%minus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.columnSpan="1" maxWidth="Infinity"/>
 
-                <Button fx:id="ZERO" text="%zero_key_label" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="POINT" text="%point_key_label" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="EQUALS" text="%equals_key_label" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="PLUS" text="%plus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="ZERO" styleClass="key-digit" text="%zero_key_label" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="POINT" styleClass="key-digit" text="%point_key_label" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="EQUALS" styleClass="key-equals" text="%equals_key_label" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="PLUS" styleClass="key-operator" text="%plus_key_label" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.columnSpan="1" maxWidth="Infinity"/>
             </children>
         </GridPane>
     </children>
