@@ -27,7 +27,7 @@ public class CalculatorApplication extends Application {
 
         Scene scene = new Scene(rootLayout);
         scene.getStylesheets().add(STYLESHEET_PATH);
-        primaryStage.setTitle("Calculator");
+        primaryStage.setTitle("Calc");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,10 +1,7 @@
 package com.freeman.calculator.controller;
 
-import com.freeman.calculator.util.CalculationUtils;
 import com.freeman.calculator.service.Calculator;
 import com.freeman.calculator.util.KeyAction;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,16 +18,16 @@ public class CalculatorController {
     @FXML private TextField displayField;
     @FXML private GridPane keyboard;
 
+    @FXML private Button CLEAR_ENTRY;
+    @FXML private Button CLEAR_ALL;
+
     private Calculator calculator;
-    private StringProperty currentInput;
 
     @FXML
     private void initialize() {
         calculator = new Calculator();
-        currentInput = new SimpleStringProperty("");
-        displayField.textProperty().bindBidirectional(currentInput);
         initKeyListeners();
-//        initDisplayListener();
+        toggleClearButtonsVisibility(true);
     }
 
     private void initKeyListeners() {
@@ -56,24 +53,42 @@ public class CalculatorController {
     }
 
     private void handleInput(KeyAction keyAction) {
-        if (KeyAction.EQUALS == keyAction) {
-            calculateResult();
-        } else if (KeyAction.CLEAR == keyAction) {
-            clearEntry();
-        } else {
-            processInput(keyAction.getAction());
+        switch (keyAction) {
+            case EQUALS:
+                calculateResult();
+                toggleClearButtonsVisibility(false);
+                break;
+            case CLEAR_ENTRY:
+                clearEntry();
+                break;
+            case CLEAR_ALL:
+                clearAll();
+                toggleClearButtonsVisibility(true);
+                break;
+            default:
+                processInput(keyAction.getAction());
+                break;
         }
     }
 
     private void calculateResult() {
-        currentInput.set(calculator.calculate(currentInput.getValue()).concat(" "));
+        displayField.textProperty().set(calculator.calculate(displayField.textProperty().get()).concat(" "));
     }
 
     private void clearEntry() {
-        if (currentInput.get().isEmpty()) {
+        if (displayField.textProperty().get().isEmpty()) {
             return;
         }
-        currentInput.set(currentInput.get().substring(0, currentInput.get().length() - 1));
+        displayField.textProperty().set(displayField.textProperty().get().substring(0, displayField.textProperty().get().length() - 1));
+    }
+
+    private void toggleClearButtonsVisibility(boolean visibility) {
+        CLEAR_ENTRY.setVisible(visibility);
+        CLEAR_ALL.setVisible(!visibility);
+    }
+
+    private void clearAll() {
+        displayField.clear();
     }
 
     private void processInput(String input) {
@@ -82,23 +97,23 @@ public class CalculatorController {
         }
 
         if (startsFromMinus(input) || isDigit(input) || isPoint(input)) {
-            currentInput.set(currentInput.get().concat(input));
+            displayField.textProperty().set(displayField.textProperty().get().concat(input));
         } else if(startsFromOpeningParenthesis(input)) {
-            currentInput.set(currentInput.get().concat(input).concat(" "));
+            displayField.textProperty().set(displayField.textProperty().get().concat(input).concat(" "));
         } else {
-            currentInput.set(currentInput.get().concat(" ").concat(input).concat(" "));
+            displayField.textProperty().set(displayField.textProperty().get().concat(" ").concat(input).concat(" "));
         }
     }
 
     private boolean startsFromOpeningParenthesis(String input) {
-        return currentInput.get().isEmpty() && Objects.equals(OPENING_PARENTHESIS, input);
+        return displayField.textProperty().get().isEmpty() && Objects.equals(OPENING_PARENTHESIS, input);
     }
 
     private boolean startsFromMinus(String input) {
-        return currentInput.get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input);
+        return displayField.textProperty().get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input);
     }
 
     private boolean startsFromClosingParenthesis(String input) {
-        return currentInput.get().isEmpty() && Objects.equals(CLOSING_PARENTHESIS, input);
+        return displayField.textProperty().get().isEmpty() && Objects.equals(CLOSING_PARENTHESIS, input);
     }
 }

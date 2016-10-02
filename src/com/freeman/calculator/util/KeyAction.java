@@ -25,7 +25,8 @@ public enum KeyAction {
     POWER("\u005E"),
     OPENING_PARENTHESIS("\u0028"),
     CLOSING_PARENTHESIS("\u0029"),
-    CLEAR("CE");
+    CLEAR_ENTRY("CE"),
+    CLEAR_ALL("AC");
 
     public String action;
 

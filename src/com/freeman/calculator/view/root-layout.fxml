@@ -18,17 +18,18 @@
 
         <GridPane fx:id="keyboard" hgap="5" vgap="5">
             <columnConstraints>
-                <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
-                <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
-                <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
-                <ColumnConstraints percentWidth="25.0" prefWidth="100.0" fillWidth="true" />
+                <ColumnConstraints percentWidth="25.0" fillWidth="true" />
+                <ColumnConstraints percentWidth="25.0" fillWidth="true" />
+                <ColumnConstraints percentWidth="25.0" fillWidth="true" />
+                <ColumnConstraints percentWidth="25.0" fillWidth="true" />
             </columnConstraints>
 
             <children>
                 <Button fx:id="OPENING_PARENTHESIS" styleClass="key-operator" text="%opening_parenthesis_key_label" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
                 <Button fx:id="CLOSING_PARENTHESIS" styleClass="key-operator" text="%closing_parenthesis_key_label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
                 <Button fx:id="POWER" styleClass="key-operator" text="%power_key_label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
-                <Button fx:id="CLEAR" styleClass="key-operator" text="%clear_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="CLEAR_ENTRY" styleClass="key-operator" text="%clear_entry_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
+                <Button fx:id="CLEAR_ALL" styleClass="key-operator" text="%clear_all_key_label" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="1" maxWidth="Infinity"/>
 
                 <Button fx:id="SEVEN" styleClass="key-digit" text="%seven_key_label" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
                 <Button fx:id="EIGHT" styleClass="key-digit" text="%eight_key_label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1" maxWidth="Infinity"/>
