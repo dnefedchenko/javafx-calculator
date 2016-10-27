@@ -120,10 +120,24 @@ public class Calculator {
     }
 
     private Double getOperand() {
-        String operand = result.pop();
+        String operand = null;
+        try {
+            operand = result.pop();
+        } catch (EmptyStackException e) {
+            clearOutput();
+            throw new IllegalArgumentException("User's input is invalid");
+        }
         if (operand.indexOf(MINUS.getAction()) == 0) {
             operand = operand.replace(MINUS.getAction(), "-");
         }
         return new Double(operand);
+    }
+
+    private void clearOutput() {
+        output.clear();
+    }
+
+    private void clearResult() {
+        result.clear();
     }
 }

@@ -1,15 +1,19 @@
 package com.freeman.calculator.controller;
 
+import com.freeman.calculator.InputFormatter;
 import com.freeman.calculator.service.Calculator;
+import com.freeman.calculator.util.CalculationUtils;
 import com.freeman.calculator.util.KeyAction;
+import com.freeman.calculator.validator.InputValidator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
-import static com.freeman.calculator.util.CalculationUtils.*;
+import static com.freeman.calculator.util.CalculationUtils.CLOSING_PARENTHESIS;
 
 /**
  * Created by freeman on 31.07.2016.
@@ -38,20 +42,6 @@ public class CalculatorController {
         });
     }
 
-    private void initDisplayListener() {
-        displayField.textProperty().addListener((observable, oldValue, newValue) -> {
-            String[] inputCharacters = newValue.split("\\s");
-            String lastTypedCharacter = inputCharacters[inputCharacters.length - 1];
-
-            if (!isDigit(lastTypedCharacter) && !isOpeningParenthesis(lastTypedCharacter) && !isPoint(lastTypedCharacter)
-                    && !isClosingParenthesis(lastTypedCharacter) && !isOperator(lastTypedCharacter)) {
-                displayField.textProperty().setValue("");
-            } else if (!displayField.textProperty().getValue().endsWith(" ")) {
-                displayField.textProperty().setValue(newValue.concat(" "));
-            }
-        });
-    }
-
     private void handleInput(KeyAction keyAction) {
         switch (keyAction) {
             case EQUALS:
@@ -72,7 +62,19 @@ public class CalculatorController {
     }
 
     private void calculateResult() {
-        displayField.textProperty().set(calculator.calculate(displayField.textProperty().get()).concat(" "));
+        String result = null;
+        try {
+            result = calculator.calculate(displayField.textProperty().get());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Cannot calculate result. Invalid input expression.");
+            result = "Error";
+        }
+        displayField.textProperty().set(InputFormatter.format(result).concat(" "));
+    }
+
+    private String format(String result) {
+        return InputValidator.containsTrailingFloatingPointZero(result)
+                ? result.substring(0, result.indexOf('0') - 1) : String.format("%.9f%n", Double.parseDouble(result));
     }
 
     private void clearEntry() {
@@ -92,13 +94,13 @@ public class CalculatorController {
     }
 
     private void processInput(String input) {
-        if (startsFromClosingParenthesis(input)) {
+        if (!InputValidator.validate(displayField.textProperty().get().trim(), input)) {
             return;
         }
 
-        if (startsFromMinus(input) || isDigit(input) || isPoint(input)) {
+        if (InputValidator.containsAllowedLeadingOperand(input) || InputValidator.isDigit(input) || InputValidator.isPoint(input)) {
             displayField.textProperty().set(displayField.textProperty().get().concat(input));
-        } else if(startsFromOpeningParenthesis(input)) {
+        } else if (InputValidator.containsLeadingOpeningParenthesis(input)) {
             displayField.textProperty().set(displayField.textProperty().get().concat(input).concat(" "));
         } else {
             displayField.textProperty().set(displayField.textProperty().get().concat(" ").concat(input).concat(" "));
@@ -106,11 +108,11 @@ public class CalculatorController {
     }
 
     private boolean startsFromOpeningParenthesis(String input) {
-        return displayField.textProperty().get().isEmpty() && Objects.equals(OPENING_PARENTHESIS, input);
+        return displayField.textProperty().get().isEmpty() && CalculationUtils.isOpeningParenthesis(input);
     }
 
     private boolean startsFromMinus(String input) {
-        return displayField.textProperty().get().isEmpty() && Objects.equals(KeyAction.MINUS.getAction(), input);
+        return displayField.textProperty().get().isEmpty() && CalculationUtils.isMinus(input);
     }
 
     private boolean startsFromClosingParenthesis(String input) {

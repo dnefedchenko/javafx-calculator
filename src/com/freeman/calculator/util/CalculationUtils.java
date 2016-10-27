@@ -32,6 +32,10 @@ public class CalculationUtils {
         return character.equals(POINT.getAction());
     }
 
+    public static boolean isMinus(String character) {
+        return Objects.equals(KeyAction.MINUS.getAction(), character);
+    }
+
     public static boolean isFunction(String character) {
         return functions.contains(character);
     }
